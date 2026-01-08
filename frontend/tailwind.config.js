@@ -12,7 +12,7 @@ export default {
             dark: '#1B263B',      // The dark navy background
             darker: '#0D1B2A',    // Deep footer background
             light: '#F8F9FA',     // Off-white for sections
-            accent: '#778DA9',    // Muted grey-blue for text
+            accent: '#7AC943',    // Muted grey-blue for text
           }
         },
         fontFamily: {

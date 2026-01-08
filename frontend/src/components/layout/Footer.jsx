@@ -1,25 +1,24 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import logo from '../../assests/kls-logo.png';
 
 const Footer = () => {
   const footerLinks = {
     product: [
-      { name: 'Smart Water Monitor', href: '/water-monitor' },
-      { name: 'Features', href: '/water-monitor#features' },
-      { name: 'Pricing', href: '/water-monitor#pricing' },
+      { name: 'Products', to: '/products' },
+      { name: 'Solutions', to: '/solutions' },
     ],
     services: [
-      { name: 'Custom Solutions', href: '/custom-solutions' },
-      { name: 'Industrial Automation', href: '/custom-solutions#industrial' },
-      { name: 'Home Automation', href: '/custom-solutions#home' },
+      { name: 'Custom Solutions', to: '/solutions' },
+      { name: 'IoT Products', to: '/products' },
     ],
     company: [
-      { name: 'About Us', href: '/about' },
-      { name: 'Contact', href: '/contact' },
-      { name: 'Careers', href: '/careers' },
+      { name: 'About Us', to: '/about' },
+      { name: 'Contact', to: '/contact' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '/privacy' },
-      { name: 'Terms of Service', href: '/terms' },
+      { name: 'Privacy Policy', to: '#' },
+      { name: 'Terms of Service', to: '#' },
     ],
   };
 
@@ -33,12 +32,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <NavLink
+                    to={link.to}
                     className="text-sm hover:text-kls-primary transition-colors"
                   >
                     {link.name}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -50,12 +49,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <NavLink
+                    to={link.to}
                     className="text-sm hover:text-kls-primary transition-colors"
                   >
                     {link.name}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -67,12 +66,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <NavLink
+                    to={link.to}
                     className="text-sm hover:text-kls-primary transition-colors"
                   >
                     {link.name}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -84,38 +83,35 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <NavLink
+                    to={link.to}
                     className="text-sm hover:text-kls-primary transition-colors"
                   >
                     {link.name}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
+        
         <div className="border-t border-gray-700 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-kls-primary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">K</span>
-                </div>
-                <div>
-                  <span className="text-white font-bold text-lg">KLS TECH</span>
-                  <span className="text-kls-primary text-xs tracking-widest uppercase font-semibold block">
-                    Solutions
-                  </span>
-                </div>
-              </div>
+              <NavLink to="/" className="flex items-center gap-2">
+                <img 
+                  src={logo} 
+                  alt="KLS Solutions Logo" 
+                  className="h-24 w-auto"
+                />
+              </NavLink>
             </div>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-400 text-center md:text-right">
               © {new Date().getFullYear()} KLS Tech Solutions. All rights reserved.
             </p>
           </div>
-          <div className="mt-4 text-center md:text-left">
+          <div className="mt-6 text-center">
             <p className="text-xs text-gray-500">
               IoT • AI-Driven • Secure
             </p>

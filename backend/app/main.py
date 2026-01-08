@@ -4,6 +4,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 import os
 
+from app.core.config import CORS_ORIGINS, API_PREFIX
+from app.api import home, products, solutions, about, contact
+
 app = FastAPI(
     title="KLS Tech Solutions API",
     description="Backend for KLS Automation Platform",
@@ -12,28 +15,30 @@ app = FastAPI(
 
 # --- 1. CORS Configuration (Crucial for Dev) ---
 # Allows your React app (running on port 5173) to talk to this backend
-origins = [
-    "http://localhost:5173",  # Vite default
-    "http://localhost:3000",  # Cra/Next default
-    "http://127.0.0.1:5173",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # --- 2. API Routes ---
-@app.get("/api/health")
+# Health check endpoint
+@app.get(f"{API_PREFIX}/health")
 async def health_check():
     return {
         "status": "active", 
         "service": "KLS Backend", 
         "mode": "R&D"
     }
+
+# Include all API routers
+app.include_router(home.router, prefix=f"{API_PREFIX}/home", tags=["home"])
+app.include_router(products.router, prefix=f"{API_PREFIX}/products", tags=["products"])
+app.include_router(solutions.router, prefix=f"{API_PREFIX}/solutions", tags=["solutions"])
+app.include_router(about.router, prefix=f"{API_PREFIX}/about", tags=["about"])
+app.include_router(contact.router, prefix=f"{API_PREFIX}/contact", tags=["contact"])
 
 # --- 3. Serve React Frontend (Production Mode) ---
 # This block checks if the frontend has been built. If yes, it serves it.

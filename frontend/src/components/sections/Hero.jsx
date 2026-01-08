@@ -22,7 +22,7 @@ const Hero = () => {
             <span className="text-kls-primary">Engineered</span>
           </h1>
           <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
-            From preventing water wastage in your home to engineering custom IoT solutions for your industry. KLS brings the future to your doorstep.
+            Transform with Smart Automation. KLS brings the future to your doorstep.
           </p>
         </motion.div>
 
