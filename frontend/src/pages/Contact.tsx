@@ -86,11 +86,31 @@ const Contact = () => {
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-foreground mb-1">Phone</h4>
+                    <a 
+                      href={contactLinks.phone}
+                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      {contactInfo.phone}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-medium text-foreground mb-1">Email</h4>
-                    <p className="text-sm text-muted-foreground">info@klstech.solutions</p>
+                    <a 
+                      href={contactLinks.email}
+                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      {contactInfo.email}
+                    </a>
                   </div>
                 </div>
 
@@ -100,7 +120,28 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-foreground mb-1">Location</h4>
-                    <p className="text-sm text-muted-foreground">Remote-first organization</p>
+                    <p className="text-sm text-muted-foreground">{contactInfo.location}</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <svg className="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784 0.013 3.808.072 1.05.06 1.77.278 2.392.6a5.9 5.9 0 0 1 2.13 1.36 5.9 5.9 0 0 1 1.36 2.13c.322.622.54 1.342.6 2.392.057 1.024.072 1.378.072 3.808 0 2.43-.015 2.784-.072 3.808-.06 1.05-.278 1.77-.6 2.392a5.9 5.9 0 0 1-1.36 2.13 5.9 5.9 0 0 1-2.13 1.36c-.622.322-1.342.54-2.392.6-1.024.057-1.378.072-3.808.072-2.43 0-2.784-.015-3.808-.072-1.05-.06-1.77-.278-2.392-.6a5.9 5.9 0 0 1-2.13-1.36 5.9 5.9 0 0 1-1.36-2.13c-.322-.622-.54-1.342-.6-2.392-.057-1.024-.072-1.378-.072-3.808 0-2.43.013-2.784.072-3.808.06-1.05.278-1.77.6-2.392a5.9 5.9 0 0 1 1.36-2.13 5.9 5.9 0 0 1 2.13-1.36c.622-.322 1.342-.54 2.392-.6C9.531 2.013 9.885 2 12.315 2zm0-2C9.928 0 9.539.013 8.5.06 7.35.118 6.5.345 5.75.65a7.9 7.9 0 0 0-2.85 1.82A7.9 7.9 0 0 0 1.08 5.32c-.305.75-.532 1.6-.59 2.75C.443 9.161.43 9.55.43 11.937c0 2.388.013 2.777.06 3.816.058 1.15.285 2 .59 2.75a7.9 7.9 0 0 0 1.82 2.85 7.9 7.9 0 0 0 2.85 1.82c.75.305 1.6.532 2.75.59 1.039.047 1.428.06 3.816.06 2.388 0 2.777-.013 3.816-.06 1.15-.058 2-.285 2.75-.59a7.9 7.9 0 0 0 2.85-1.82 7.9 7.9 0 0 0 1.82-2.85c.305-.75.532-1.6.59-2.75.047-1.039.06-1.428.06-3.816 0-2.388-.013-2.777-.06-3.816-.058-1.15-.285-2-.59-2.75a7.9 7.9 0 0 0-1.82-2.85A7.9 7.9 0 0 0 18.25.65c-.75-.305-1.6-.532-2.75-.59C14.461.013 14.072 0 11.685 0h.63z" clipRule="evenodd"/>
+                      <path fillRule="evenodd" d="M12.315 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12.315 16a4.162 4.162 0 1 1 0-8.324 4.162 4.162 0 0 1 0 8.324z" clipRule="evenodd"/>
+                      <circle cx="18.31" cy="5.594" r="1.445"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-foreground mb-1">Instagram</h4>
+                    <a 
+                      href={contactLinks.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      @{contactInfo.instagram}
+                    </a>
                   </div>
                 </div>
               </div>
