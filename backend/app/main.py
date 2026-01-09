@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 import os
 
 from app.core.config import CORS_ORIGINS, API_PREFIX
-from app.api import home, products, solutions, about, contact
+from app.api import home, products, solutions, about, contact, theme
 
 app = FastAPI(
     title="KLS Tech Solutions API",
@@ -39,6 +39,7 @@ app.include_router(products.router, prefix=f"{API_PREFIX}/products", tags=["prod
 app.include_router(solutions.router, prefix=f"{API_PREFIX}/solutions", tags=["solutions"])
 app.include_router(about.router, prefix=f"{API_PREFIX}/about", tags=["about"])
 app.include_router(contact.router, prefix=f"{API_PREFIX}/contact", tags=["contact"])
+app.include_router(theme.router, prefix=f"{API_PREFIX}/theme", tags=["theme"])
 
 # --- 3. Serve React Frontend (Production Mode) ---
 # This block checks if the frontend has been built. If yes, it serves it.
