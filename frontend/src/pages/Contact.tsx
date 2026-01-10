@@ -5,14 +5,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { getContactData } from "@/services/contactService";
+import { getContactData, submitContactForm } from "@/services/contactService";
 import type { ContactData } from "@/services/contactService";
 import { contactInfo, contactLinks } from "@/config/contact";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
   const [contactData, setContactData] = useState<ContactData | null>(null);
   const [contactLoading, setContactLoading] = useState(true);
   const [contactError, setContactError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Fetch contact page data (placeholder GET only, no POST)
@@ -36,6 +39,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     company: "",
     subject: "",
     message: "",
@@ -45,10 +49,44 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission would be handled here
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+
+    try {
+      const response = await submitContactForm({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        company: formData.company || undefined,
+        subject: formData.subject,
+        message: formData.message,
+      });
+
+      if (response.success) {
+        toast({
+          title: "Message Sent!",
+          description: response.message,
+        });
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          subject: "",
+          message: "",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -61,7 +99,10 @@ const Contact = () => {
               <img 
                 src="/kls-logo-nobg.png" 
                 alt="KLS Solutions Logo" 
-                className="h-16 w-auto"
+                className="h-32 w-auto drop-shadow-lg transition-all duration-300"
+                style={{ 
+                  filter: 'drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 20px rgba(6, 182, 212, 0.6)) drop-shadow(0 0 30px rgba(6, 182, 212, 0.4))'
+                }}
               />
             </div>
             <h1 className="heading-display text-foreground mb-6">
@@ -208,6 +249,21 @@ const Contact = () => {
 
                   <div className="grid gap-6 md:grid-cols-2">
                     <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                        Phone Number
+                      </label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="+91 98765 43210"
+                        className="bg-background"
+                      />
+                    </div>
+
+                    <div>
                       <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
                         Company
                       </label>
@@ -255,9 +311,15 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button type="submit" variant="hero" size="lg" className="w-full md:w-auto">
-                    Send Message
-                    <Send className="ml-2 h-4 w-4" />
+                  <Button 
+                    type="submit" 
+                    variant="hero" 
+                    size="lg" 
+                    className="w-full md:w-auto"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                    <Send className={`ml-2 h-4 w-4 ${isSubmitting ? "animate-spin" : ""}`} />
                   </Button>
                 </form>
               </div>

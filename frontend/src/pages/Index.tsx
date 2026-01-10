@@ -123,7 +123,7 @@ const Index = () => {
               </ul>
 
               <Button asChild variant="enterprise" size="lg">
-                <Link to="/products">
+                <Link to="/products#smart-water-monitor">
                   Learn More
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

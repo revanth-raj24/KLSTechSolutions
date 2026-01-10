@@ -15,7 +15,10 @@ const Solutions = () => {
               <img 
                 src="/kls-logo-nobg.png" 
                 alt="KLS Solutions Logo" 
-                className="h-16 w-auto"
+                className="h-32 w-auto drop-shadow-lg transition-all duration-300"
+                style={{ 
+                  filter: 'drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 20px rgba(6, 182, 212, 0.6)) drop-shadow(0 0 30px rgba(6, 182, 212, 0.4))'
+                }}
               />
             </div>
             <h1 className="heading-display text-foreground mb-6">
