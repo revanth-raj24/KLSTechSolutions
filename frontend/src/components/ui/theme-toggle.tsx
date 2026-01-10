@@ -1,7 +1,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { saveThemePreference } from "@/services/themeService";
 
@@ -14,8 +14,8 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  const handleThemeChange = async () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+  const handleThemeChange = async (checked: boolean) => {
+    const newTheme = checked ? "dark" : "light";
     setTheme(newTheme);
     // Sync with backend (non-blocking)
     try {
@@ -28,37 +28,41 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <Button
-        variant="ghost"
-        size="icon"
-        className="h-9 w-9"
-        aria-label="Toggle theme"
-      >
-        <Sun className="h-4 w-4" />
-      </Button>
+      <div className="flex items-center gap-2">
+        <Sun className="h-4 w-4 text-white/90" />
+        <Switch
+          checked={false}
+          onCheckedChange={handleThemeChange}
+          aria-label="Toggle theme"
+          className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-gray-500 border-2 border-white/30"
+        />
+        <Moon className="h-4 w-4 text-white/50" />
+      </div>
     );
   }
 
+  const isDark = theme === "dark";
+
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      className="h-9 w-9 relative"
-      onClick={handleThemeChange}
-      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-    >
+    <div className="flex items-center gap-2">
       <Sun
         className={cn(
-          "h-4 w-4 rotate-0 scale-100 transition-all",
-          theme === "dark" && "rotate-90 scale-0"
+          "h-4 w-4 transition-all duration-200",
+          isDark ? "text-white/50" : "text-white/90"
         )}
+      />
+      <Switch
+        checked={isDark}
+        onCheckedChange={handleThemeChange}
+        aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+        className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-gray-500 border-2 border-white/30 shadow-md"
       />
       <Moon
         className={cn(
-          "absolute h-4 w-4 rotate-90 scale-0 transition-all",
-          theme === "dark" && "rotate-0 scale-100"
+          "h-4 w-4 transition-all duration-200",
+          isDark ? "text-white/90" : "text-white/50"
         )}
       />
-    </Button>
+    </div>
   );
 }

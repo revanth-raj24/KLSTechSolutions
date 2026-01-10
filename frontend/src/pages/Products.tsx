@@ -16,7 +16,10 @@ const Products = () => {
               <img 
                 src="/kls-logo-nobg.png" 
                 alt="KLS Solutions Logo" 
-                className="h-16 w-auto"
+                className="h-32 w-auto drop-shadow-lg transition-all duration-300"
+                style={{ 
+                  filter: 'drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 20px rgba(6, 182, 212, 0.6)) drop-shadow(0 0 30px rgba(6, 182, 212, 0.4))'
+                }}
               />
             </div>
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
@@ -35,7 +38,7 @@ const Products = () => {
       </section>
 
       {/* Smart Water Monitor Section */}
-      <section className="section-padding">
+      <section id="smart-water-monitor" className="section-padding">
         <div className="container-narrow mx-auto">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
             <div>
@@ -115,11 +118,12 @@ const Products = () => {
 
             <div className="lg:sticky lg:top-24">
               <div className="rounded-2xl border border-border bg-card p-8">
-                <div className="aspect-square rounded-xl bg-gradient-to-br from-secondary to-background flex items-center justify-center mb-6">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl" />
-                    <Droplets className="relative h-24 w-24 text-primary" />
-                  </div>
+                <div className="aspect-square rounded-xl bg-gradient-to-br from-secondary to-background flex items-center justify-center mb-6 overflow-hidden">
+                  <img 
+                    src="/model2.jpeg" 
+                    alt="Smart Water Monitor Product" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 
                 <div className="space-y-4">

@@ -1,37 +1,11 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Cpu, Brain, Shield, Droplets, Factory, Settings, ChevronRight, Zap } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import FeatureCard from "@/components/ui/FeatureCard";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { getHealthStatus } from "@/services/healthService";
-import type { HealthStatus } from "@/services/healthService";
 
 const Index = () => {
-  const [healthStatus, setHealthStatus] = useState<HealthStatus | null>(null);
-  const [healthLoading, setHealthLoading] = useState(true);
-  const [healthError, setHealthError] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Fetch health status on component mount
-    const fetchHealth = async () => {
-      try {
-        setHealthLoading(true);
-        setHealthError(null);
-        const status = await getHealthStatus();
-        setHealthStatus(status);
-      } catch (error) {
-        // Fail gracefully - don't break UI rendering
-        setHealthError(error instanceof Error ? error.message : 'Failed to fetch health status');
-        console.error('Health check failed:', error);
-      } finally {
-        setHealthLoading(false);
-      }
-    };
-
-    fetchHealth();
-  }, []);
 
   return (
     <Layout>
@@ -54,11 +28,6 @@ const Index = () => {
 
         <div className="relative container-narrow mx-auto px-6 py-20 lg:py-32">
           <div className="max-w-4xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm text-muted-foreground">
-              <span className={`flex h-2 w-2 rounded-full ${healthStatus?.status === 'active' ? 'bg-green-500' : 'bg-primary'} ${healthLoading ? 'animate-pulse' : ''}`} />
-              {healthLoading ? 'Checking system status...' : healthStatus ? `${healthStatus.service} — ${healthStatus.mode}` : healthError ? 'Backend unavailable' : 'R&D Phase — Building the Future'}
-            </div>
-            
             <h1 className="heading-display text-foreground mb-6 animate-fade-up">
               Smart Living,{" "}
               <span className="text-gradient">Engineered</span>
@@ -154,7 +123,7 @@ const Index = () => {
               </ul>
 
               <Button asChild variant="enterprise" size="lg">
-                <Link to="/products">
+                <Link to="/products#smart-water-monitor">
                   Learn More
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

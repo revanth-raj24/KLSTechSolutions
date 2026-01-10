@@ -6,61 +6,62 @@
 
 @layer base {
   :root {
-    /* Light Theme - Default */
-    --background: 0 0% 100%;
-    --foreground: 220 40% 10%;
+    /* Light Theme - Custom Palette */
+    /* Colors: #4A4A4A (dark gray), #CBCBCB (light gray), #FFFFE3 (cream), #6D8196 (blue-gray) */
+    --background: 60 100% 95%; /* #FFFFE3 - cream background */
+    --foreground: 0 0% 29%; /* #4A4A4A - dark gray text */
 
-    /* Card surfaces - light grey */
-    --card: 0 0% 98%;
-    --card-foreground: 220 40% 10%;
+    /* Card surfaces - slightly darker cream */
+    --card: 60 100% 97%;
+    --card-foreground: 0 0% 29%; /* #4A4A4A */
 
-    --popover: 0 0% 98%;
-    --popover-foreground: 220 40% 10%;
+    --popover: 60 100% 97%;
+    --popover-foreground: 0 0% 29%; /* #4A4A4A */
 
-    /* Primary - Cyan accent */
-    --primary: 190 100% 50%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary - Blue-gray accent */
+    --primary: 210 17% 51%; /* #6D8196 */
+    --primary-foreground: 60 100% 95%; /* #FFFFE3 - cream for contrast */
 
-    /* Secondary - Light grey */
-    --secondary: 220 15% 95%;
-    --secondary-foreground: 220 40% 15%;
+    /* Secondary - Light gray */
+    --secondary: 0 0% 80%; /* #CBCBCB */
+    --secondary-foreground: 0 0% 29%; /* #4A4A4A */
 
     /* Muted elements */
-    --muted: 220 10% 92%;
-    --muted-foreground: 220 15% 45%;
+    --muted: 0 0% 85%; /* Slightly lighter than #CBCBCB */
+    --muted-foreground: 0 0% 45%; /* Medium gray */
 
-    /* Accent - Subtle cyan tint */
-    --accent: 190 80% 30%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent - Blue-gray variant */
+    --accent: 210 20% 45%; /* Darker blue-gray */
+    --accent-foreground: 60 100% 95%; /* #FFFFE3 */
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 85%;
-    --input: 220 15% 90%;
-    --ring: 190 100% 50%;
+    --border: 0 0% 80%; /* #CBCBCB */
+    --input: 0 0% 85%; /* Slightly lighter gray */
+    --ring: 210 17% 51%; /* #6D8196 */
 
     --radius: 0.5rem;
 
     /* Custom design tokens - Light theme */
-    --gradient-primary: linear-gradient(135deg, hsl(190 100% 50%) 0%, hsl(200 100% 40%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 10% 98%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 10% 96%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 10% 98%) 50%, hsl(0 0% 100%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(210 17% 51%) 0%, hsl(210 20% 45%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(60 100% 95%) 0%, hsl(60 100% 97%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(60 100% 97%) 0%, hsl(0 0% 85%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(60 100% 95%) 0%, hsl(60 100% 97%) 50%, hsl(60 100% 95%) 100%);
     
-    --shadow-soft: 0 4px 20px -4px hsl(220 40% 10% / 0.1);
-    --shadow-glow: 0 0 40px -10px hsl(190 100% 50% / 0.2);
-    --shadow-card: 0 8px 32px -8px hsl(220 40% 10% / 0.08);
+    --shadow-soft: 0 4px 20px -4px hsl(0 0% 29% / 0.1);
+    --shadow-glow: 0 0 40px -10px hsl(210 17% 51% / 0.2);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 29% / 0.08);
 
     /* Sidebar tokens - Light theme */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 220 40% 15%;
-    --sidebar-primary: 190 100% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 95%;
-    --sidebar-accent-foreground: 220 40% 15%;
-    --sidebar-border: 220 15% 85%;
-    --sidebar-ring: 190 100% 50%;
+    --sidebar-background: 60 100% 97%;
+    --sidebar-foreground: 0 0% 29%;
+    --sidebar-primary: 210 17% 51%; /* #6D8196 */
+    --sidebar-primary-foreground: 60 100% 95%; /* #FFFFE3 */
+    --sidebar-accent: 0 0% 80%; /* #CBCBCB */
+    --sidebar-accent-foreground: 0 0% 29%; /* #4A4A4A */
+    --sidebar-border: 0 0% 80%; /* #CBCBCB */
+    --sidebar-ring: 210 17% 51%; /* #6D8196 */
   }
 
   .dark {
