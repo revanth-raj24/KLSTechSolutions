@@ -18,7 +18,7 @@ export function ThemeInitializer() {
           setTheme(preference.theme);
         }
       } catch (error) {
-        // If backend is unavailable, use default (light)
+        // If backend is unavailable, use default (dark)
         console.warn("Failed to load theme from backend, using default:", error);
       }
     };

@@ -19,7 +19,7 @@ export async function getThemePreference(): Promise<ThemePreference> {
   } catch (error) {
     // If backend is unavailable, return default
     console.warn('Failed to fetch theme preference from backend:', error);
-    return { theme: 'light' };
+    return { theme: 'dark' };
   }
 }
 
